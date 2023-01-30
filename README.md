@@ -73,24 +73,29 @@ struct MapInfo {
 };
 ```
 
-2. Parse `/proc/pid/maps` or `/proc/pid/smaps`:
+2. Parse `/proc/pid/maps` or `/proc/pid/smaps` and store the list of map info:
 
 ```cpp
-std::vector<MapInfo> Scan(int pid = -1, bool smap = false);
+std::vector<MapInfo> scan_maps(int pid = -1, bool smap = false);
 ```
 
 ```cpp
 // Parse maps of myself
-auto my_maps = Scan();
+auto my_maps = scan_maps();
 // Parse smaps of myself, get additional info of size
-auto my_smaps = Scan(-1, true);
+auto my_smaps = scan_maps(-1, true);
 // Parse maps of 123
-auto my_maps = Scan(123);
+auto my_maps = scan_maps(123);
 // Parse smaps of 393, get additional info of size
-auto my_smaps = Scan(393, true);
+auto my_smaps = scan_maps(393, true);
+```
+3. Parse `/proc/pid/maps` and store the list of map info with matching name:
+
+```cpp
+
 ```
 
-3. Remapping all memories with matching name to anonymous memories:
+4. Remapping all memories with matching name to anonymous memories:
 
 ```cpp
 void remap_all(const char *name);

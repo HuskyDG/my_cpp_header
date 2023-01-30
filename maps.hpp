@@ -7,6 +7,7 @@
 #include <vector>
 #include <fcntl.h>
 #include <unistd.h>
+#include "base.hpp"
 
 using namespace std;
 
@@ -15,41 +16,8 @@ using namespace std;
                     map.smap.x = m; \
                     continue; \
                 }
-                
 
-struct SMapInfo {
-    size_t mem = 0;
-    size_t kernel_page = 0;
-    size_t mmu_page = 0;
-    size_t rss = 0;
-    size_t pss = 0;
-    size_t shared_clean = 0;
-    size_t shared_dirty = 0;
-    size_t private_clean = 0;
-    size_t private_dirty = 0;
-    size_t referenced = 0;
-    size_t anonymous = 0;
-    size_t anonhugepages = 0;
-    size_t shared_hugetlb = 0;
-    size_t private_hugetlb = 0;
-    size_t swap = 0;
-    size_t swappss = 0;
-    size_t locked = 0;
-};
-
-struct MapInfo {
-    uintptr_t start;
-    uintptr_t end;
-    uint8_t perms;
-    bool is_private;
-    dev_t dev;
-    ino_t inode;
-    std::string path;
-    uintptr_t offset;
-    SMapInfo smap;
-};
-
-std::vector<MapInfo> Scan(int pid = -1, bool smap = false){
+std::vector<MapInfo> scan_maps(int pid, bool smap) {
     std::vector<MapInfo> maps;
     MapInfo map;
     FILE *fp;
@@ -137,8 +105,8 @@ std::vector<MapInfo> Scan(int pid = -1, bool smap = false){
 
 #undef ADD_SIZE
 
-static vector<MapInfo> find_maps(const char *name) {
-    auto maps = Scan();
+vector<MapInfo> find_maps(const char *name) {
+    auto maps = scan_maps();
     for (auto iter = maps.begin(); iter != maps.end();) {
         if (iter->path != name) {
             iter = maps.erase(iter);
