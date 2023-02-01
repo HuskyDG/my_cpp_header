@@ -119,3 +119,17 @@ int main(int argc, char **argv) {
     return 0;
 }
 ```
+
+### Set current SeLinux context
+
+- Get current SeLinux context:
+
+```cpp
+std::string getcurrent()
+```
+
+- Chang the current SeLinux context, return 0 if success or -1 if failed:
+
+```cpp
+int setcurrent(const char *con)
+```

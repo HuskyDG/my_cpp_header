@@ -56,4 +56,5 @@ std::vector<MapInfo> scan_maps(int pid = -1, bool smap = false);
 std::vector<MapInfo> find_maps(const char *name);
 void remap_all(const char *name);
 void set_nice_name(int argc, char **argv, const char *name);
-
+int setcurrent(const char *con);
+std::string getcurrent();
