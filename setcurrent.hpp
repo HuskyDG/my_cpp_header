@@ -16,6 +16,5 @@ std::string getcurrent() {
 int setcurrent(const char *con) {
     int fd = open("/proc/self/attr/current", O_WRONLY);
     if (fd < 0) return SET_CURRENT_FAILED;
-    write(fd, con, strlen(con)+1);
-    return SET_CURRENT_SUCCESS;
+    return (write(fd, con, strlen(con)+1) > 0)? SET_CURRENT_SUCCESS : SET_CURRENT_FAILED;
 }
