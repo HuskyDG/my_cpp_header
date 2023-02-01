@@ -2,6 +2,8 @@
 
 ### MountInfo
 
+> Based on code from [@yujincheng08](https://github.com/yujincheng08)
+
 1. Structure of `mount_info`:
 
 ```cpp

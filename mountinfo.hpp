@@ -14,6 +14,8 @@
 #define ssprintf snprintf
 #define parse_int(s) atoi(s.data())
 
+// based on mountinfo code from https://github.com/yujincheng08
+
 using namespace std;
 
 std::vector<mount_info> parse_mount_info(const char *pid) {
