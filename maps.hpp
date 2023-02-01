@@ -35,7 +35,7 @@ std::vector<MapInfo> scan_maps(int pid, bool smap) {
         char path[4098];
         char perms[10];
         char address[50];
-        int major_dev, minor_dev, path_start;
+        unsigned int major_dev, minor_dev, path_start;
         sscanf(line, "%s %s %ld %x:%x %ld %n%*s", address, perms, &map.offset, &major_dev, &minor_dev, &map.inode, &path_start);
         map.dev = makedev(major_dev, minor_dev);
         line [strlen(line) - 1] = '\0';
