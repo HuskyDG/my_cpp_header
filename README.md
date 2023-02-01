@@ -101,3 +101,19 @@ auto my_smaps = scan_maps(393, true);
 void remap_all(const char *name);
 ```
 
+### Nice name
+
+- Set nice name for current process (use this in `main(int argc, char **argv)` function). This will fill `argv[]` with zero characters and set custom name for `argv[0]`.
+
+```cpp
+void set_nice_name(const char *name)
+```
+
+```cpp
+int main(int argc, char **argv) {
+    // set process name to magical
+    set_nice_name("magical");
+    getchar();
+    return 0;
+}
+```
