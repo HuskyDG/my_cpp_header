@@ -133,3 +133,16 @@ std::string getcurrent()
 ```cpp
 int setcurrent(const char *con)
 ```
+### Fork
+
+1. Fork new process with PPID=1
+
+```cpp
+int fork_dont_care()
+```
+
+2. Fork new process that will be automatically dead if parent (PPID) died:
+
+```cpp
+int fork_no_orphan()
+```
